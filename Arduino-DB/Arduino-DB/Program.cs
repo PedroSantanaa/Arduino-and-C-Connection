@@ -3,28 +3,30 @@ using Arduino_DB.data;
 using Arduino_DB.modules;
 internal class Program
 {
-    static SerialPort SerialPort;
+    static SerialPort? SerialPort;
     private static void Main(string[] args)
     {
         SerialPort = new SerialPort("COM3", 9600);
         SerialPort.Open();
-        int cont = 0;
         List<string> lines = new List<string>();        
 
         while (true) {
             Console.WriteLine("Deseja continuar medindo??(s/n)");
-            string message= Console.ReadLine();
+            string? message= Console.ReadLine();
             if(message == "s")
             {
                 lines.Clear();
-                cont = 0;
-                while (cont < 3)
+                int cont = 0;
+                while (cont < 2)
                 {
 
-                    string data = ReadingLines();
-                    lines.Add(data);
-
-                    cont++;
+                    string data = ReadingLines(SerialPort);
+                    Console.WriteLine(data);
+                    if (!string.IsNullOrEmpty(data))
+                    {
+                        lines.Add(data);
+                        cont++;
+                    }
                 }
                 Arduino arduino = new Arduino(lines);
                 using (var context = new AppDbContext())
@@ -43,13 +45,13 @@ internal class Program
 
     }
 
-    private static string ReadingLines()
+    private static string ReadingLines(SerialPort? serialPort)
     {
         try
         {
-            string message = SerialPort.ReadLine();
+            string? msg = serialPort?.ReadLine();
 
-            return message;
+            return msg;
         }
         catch (TimeoutException)
         {

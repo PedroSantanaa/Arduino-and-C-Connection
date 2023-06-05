@@ -9,19 +9,53 @@ namespace Arduino_DB.modules
     public class Arduino
     {
         public int Id { get; set; }
-        public string temp { get; set; }
-        public string tensao { get; set; }
-        public string corrente { get; set; }
+        public string Temperatura { get; set; }
+        public string Tensao { get; set; }
+        //public string Corrente { get; set; }
+        public string TemperaturaAnormais { get; set; }
+        public string TensaoAnormais { get; set; }
+        //public string CorrenteAnormais { get; set; }
 
         public Arduino()
         {
-            
+
         }
         public Arduino(List<string> data)
-        {            
-            this.temp = data[0];
-            this.tensao = data[1];
-            this.corrente = data[2];
+        {
+            double temp = double.Parse(data[0]);
+            double voltage = double.Parse(data[1]);
+            if (temp >= 26)
+            {
+                this.TemperaturaAnormais = data[0];
+                this.Temperatura = "Temperatura acima do desejado";
+            }
+            else
+            {
+                this.Temperatura = data[0];
+                this.TemperaturaAnormais = "Tudo dentro da normalidade";
+            }
+
+            if ( voltage >= 15)
+            {
+                this.TensaoAnormais = data[1];
+                this.Tensao = "Tensao acima do desejado";
+            }
+            else
+            {
+                this.Tensao = data[1];
+                this.TensaoAnormais = "Tudo dentro da normalidade";
+            }
+
+            //if (double.Parse(data[2]) >= 0.6)
+            //{
+            //    this.CorrenteAnormais = data[2];
+            //    this.Corrente = "Corrente acima do desejado";
+            //}
+            //else
+            //{
+            //    this.Corrente = data[2];
+            //    this.CorrenteAnormais = "Tudo dentro da normalidade";
+            //}
         }
     }
 }
