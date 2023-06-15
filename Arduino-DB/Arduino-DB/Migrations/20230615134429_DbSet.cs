@@ -6,7 +6,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace Arduino_DB.Migrations
 {
     /// <inheritdoc />
-    public partial class DbSets : Migration
+    public partial class DbSet : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,8 +22,11 @@ namespace Arduino_DB.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Temperatura = table.Column<string>(type: "longtext", nullable: false),
                     Tensao = table.Column<string>(type: "longtext", nullable: false),
+                    Porta = table.Column<string>(type: "longtext", nullable: false),
+                    NivelDaAgua = table.Column<string>(type: "longtext", nullable: false),
                     TemperaturaAnormais = table.Column<string>(type: "longtext", nullable: false),
-                    TensaoAnormais = table.Column<string>(type: "longtext", nullable: false)
+                    TensaoAnormais = table.Column<string>(type: "longtext", nullable: false),
+                    NivelDaAguaBaixo = table.Column<string>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
                 {

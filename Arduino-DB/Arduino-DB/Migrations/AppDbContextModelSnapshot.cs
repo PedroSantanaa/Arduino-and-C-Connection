@@ -24,6 +24,18 @@ namespace Arduino_DB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("NivelDaAgua")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NivelDaAguaBaixo")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Porta")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Temperatura")
                         .IsRequired()
                         .HasColumnType("longtext");

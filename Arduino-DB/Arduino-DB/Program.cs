@@ -6,18 +6,19 @@ internal class Program
     static SerialPort? SerialPort;
     private static void Main(string[] args)
     {
-        SerialPort = new SerialPort("COM3", 9600);
+        SerialPort = new SerialPort("COM5", 9600);
         SerialPort.Open();
-        List<string> lines = new List<string>();        
+        List<string> lines = new List<string>();
 
-        while (true) {
+        while (true)
+        {
             Console.WriteLine("Deseja continuar medindo??(s/n)");
-            string? message= Console.ReadLine();
-            if(message == "s")
+            string? message = Console.ReadLine();
+            if (message == "s")
             {
                 lines.Clear();
                 int cont = 0;
-                while (cont < 2)
+                while (cont < 4)
                 {
 
                     string data = ReadingLines(SerialPort);
@@ -41,7 +42,7 @@ internal class Program
             }
 
         }
-        
+
 
     }
 
@@ -59,5 +60,5 @@ internal class Program
         }
 
     }
-    
+
 }

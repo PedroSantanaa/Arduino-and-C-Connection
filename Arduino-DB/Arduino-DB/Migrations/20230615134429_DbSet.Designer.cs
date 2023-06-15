@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Arduino_DB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230605153630_DbSets")]
-    partial class DbSets
+    [Migration("20230615134429_DbSet")]
+    partial class DbSet
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,6 +26,18 @@ namespace Arduino_DB.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("NivelDaAgua")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NivelDaAguaBaixo")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Porta")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Temperatura")
                         .IsRequired()
